@@ -22,6 +22,14 @@ exports.student_add = (req, res, next) => {
   });
 };
 
+exports.student_add_history = async (req, res, next) => {
+  const result = await Student.findByIdAndUpdate(
+    { _id: req.body.id },
+    { $addToSet: { history: req.body.history } }
+  );
+  res.send(result);
+};
+
 exports.student_details = (req, res) => {
   Student.findById(req.params.id, (err, student) => {
     if (err) {
