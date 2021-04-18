@@ -30,6 +30,20 @@ exports.student_add_history = async (req, res, next) => {
   res.send(result);
 };
 
+exports.student_delete_history = async (req, res, next) => {
+  const result = await Student.updateOne(
+    { _id: req.body.id },
+    {
+      $pull: {
+        history: {
+          amount: req.body.amount,
+        },
+      },
+    }
+  );
+  res.send(result);
+};
+
 exports.student_details = (req, res) => {
   Student.findById(req.params.id, (err, student) => {
     if (err) {

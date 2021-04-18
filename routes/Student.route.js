@@ -9,6 +9,8 @@ router.post("/add", studentValidation, student_controller.student_add);
 
 router.post("/add/history", student_controller.student_add_history);
 
+router.post("/delete/history", student_controller.student_delete_history);
+
 router.get("/:id", student_controller.student_details);
 
 router.put("/:id", studentValidation, student_controller.student_update);
